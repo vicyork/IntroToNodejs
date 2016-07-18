@@ -15,7 +15,6 @@
   background-color: white;
 }
 
-
 /**
  * Theme Styles
  */
@@ -30,27 +29,32 @@
   overflow: visible;
   width: 16px;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, .1);
   background-clip: padding-box;
   border: solid transparent;
   min-height: 28px;
   padding: 100px 0 0;
-  @include box-shadow(inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07));
+  @include box-shadow(inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07));
   border-width: 1px 1px 1px 6px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 ::-webkit-scrollbar-button {
   height: 0;
   width: 0;
 }
+
 ::-webkit-scrollbar-track {
   background-clip: padding-box;
   border: solid transparent;
   border-width: 0 0 0 4px;
 }
+
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
@@ -412,48 +416,63 @@ button:not(:disabled):active {
 .blue {
   color: $brand-blue;
 }
+
 .blue2 {
   color: $brand-blue-secondary;
 }
+
 .blue3 {
   color: $brand-blue-secondary2;
 }
+
 .yellow {
   color: $brand-yellow;
 }
+
 .yellow2 {
   color: $brand-yellow-secondary;
 }
+
 .yellow3 {
   color: $brand-yellow-secondary2;
 }
+
 .green {
   color: $brand-green;
 }
+
 .green2 {
   color: $brand-green-secondary;
 }
+
 .green3 {
   color: $brand-green-secondary2;
 }
+
 .red {
   color: $brand-red;
 }
+
 .red2 {
   color: $brand-red-secondary;
 }
+
 .red3 {
   color: $brand-red-secondary2;
 }
+
 .gray {
   color: $gray-1;
 }
+
 .gray2 {
   color: $gray-2;
 }
+
 .gray3 {
   color: $gray-3;
 }
+
 .gray4 {
   color: $gray-4;
 }
@@ -461,6 +480,7 @@ button:not(:disabled):active {
 .white {
   color: white !important;
 }
+
 .black {
   color: black !important;
 }
@@ -593,28 +613,34 @@ article.smaller {
 .prettyprint .atv { /* a markup attribute value */
   color: $brand-green-secondary2; //rgb(0, 138, 53);
 }
+
 .prettyprint .kwd, /* a keyword */
 .prettyprint .tag { /* a markup tag name */
   color: rgb(0, 102, 204);
 }
+
 .prettyprint .com { /* a comment */
   color: $gray-3; //rgb(127, 127, 127);
   font-style: italic;
 }
+
 .prettyprint .lit { /* a literal value */
   color: rgb(127, 0, 0);
 }
+
 .prettyprint .pun, /* punctuation, lisp open bracket, lisp close bracket */
 .prettyprint .opn,
 .prettyprint .clo {
   color: $gray-4; //rgb(127, 127, 127);
 }
+
 .prettyprint .typ, /* a type name */
 .prettyprint .atn, /* a markup attribute name */
 .prettyprint .dec,
 .prettyprint .var { /* a declaration; a variable name */
   color: $brand-red-secondary2; //rgb(127, 0, 127);
 }
+
 .prettyprint .pln {
   color: $gray-4;
 }
@@ -635,7 +661,8 @@ article.smaller {
   @include border-radius($slide-border-radius);
 
   @include box-sizing(border-box);
-  @include transform(translateY($slide-height / 2));@include transition(all 0.4s ease-in-out);
+  @include transform(translateY($slide-height / 2));
+  @include transition(all 0.4s ease-in-out);
 
   > section {
     background: #fff;
@@ -678,7 +705,7 @@ article.smaller {
       &.backdrop {
         //@include background(linear-gradient($gray-1, white 30%, white 60%, $gray-1));
         @include background-image(radial-gradient(50% 50%, #b1dfff 0%,
-                                                  $brand-blue 600px));
+                $brand-blue 600px));
       }
 
       &.next {
@@ -735,11 +762,11 @@ article.smaller {
 }
 
 .reflect {
-  -webkit-box-reflect: below 3px -webkit-linear-gradient(rgba(255,255,255,0) 85%, white 150%);
-  -moz-box-reflect: below 3px -moz-linear-gradient(rgba(255,255,255,0) 85%, white 150%);
-  -o-box-reflect: below 3px -o-linear-gradient(rgba(255,255,255,0) 85%, white 150%);
-  -ms-box-reflect: below 3px -ms-linear-gradient(rgba(255,255,255,0) 85%, white 150%);
-  box-reflect: below 3px linear-gradient(rgba(255,255,255,0) 85%, white 150%);
+  -webkit-box-reflect: below 3px -webkit-linear-gradient(rgba(255, 255, 255, 0) 85%, white 150%);
+  -moz-box-reflect: below 3px -moz-linear-gradient(rgba(255, 255, 255, 0) 85%, white 150%);
+  -o-box-reflect: below 3px -o-linear-gradient(rgba(255, 255, 255, 0) 85%, white 150%);
+  -ms-box-reflect: below 3px -ms-linear-gradient(rgba(255, 255, 255, 0) 85%, white 150%);
+  box-reflect: below 3px linear-gradient(rgba(255, 255, 255, 0) 85%, white 150%);
 }
 
 .flexbox {
@@ -787,11 +814,13 @@ article.smaller {
 
   //@include highlight-color(rgba(51, 51, 51, 0.5));
 }
+
 #prev-slide-area {
   margin-left: -$slide-width-widescreen / 2;
   //@include border-radius(10px 0 0 10px);
   //@include box-shadow(-5px 0 10px #222 inset);
 }
+
 #next-slide-area {
   margin-left: $slide-width / 2;
   //@include border-radius(0 10px 10px 0);
@@ -939,7 +968,7 @@ aside.gdbar {
       display: none !important;
     }
   }
-  
+
   slides {
     slide {
       &.backdrop {
@@ -982,7 +1011,7 @@ aside.gdbar {
       @include transform(none !important);
       width: 100%;
       height: 100%;
-      page-break-after:always;
+      page-break-after: always;
       top: auto !important;
       left: auto !important;
       margin-top: 0 !important;

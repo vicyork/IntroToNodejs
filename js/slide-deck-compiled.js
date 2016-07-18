@@ -1,16 +1,18 @@
+'use strict';
+
 /**
  * @authors Luke Mahe
  * @authors Eric Bidelman
  * @fileoverview TODO
  */
-document.cancelFullScreen = document.webkitCancelFullScreen ||
-  document.mozCancelFullScreen;
+document.cancelFullScreen = document.webkitCancelFullScreen || document.mozCancelFullScreen;
 
 /**
  * @constructor
  */
 function SlideDeck(el) {
   "use strict";
+
   this.curSlide_ = 0;
   this.prevSlide_ = 0;
   this.config_ = null;
@@ -28,8 +30,7 @@ function SlideDeck(el) {
  * @const
  * @private
  */
-SlideDeck.prototype.SLIDE_CLASSES_ = [
-  'far-past', 'past', 'current', 'next', 'far-next'];
+SlideDeck.prototype.SLIDE_CLASSES_ = ['far-past', 'past', 'current', 'next', 'far-next'];
 
 /**
  * @const
@@ -167,18 +168,18 @@ SlideDeck.prototype.onPopState_ = function (e) {
  * @param {Event} e
  */
 SlideDeck.prototype.onBodyKeyDown_ = function (e) {
-  if (/^(input|textarea)$/i.test(e.target.nodeName) ||
-    e.target.isContentEditable) {
+  if (/^(input|textarea)$/i.test(e.target.nodeName) || e.target.isContentEditable) {
     return;
   }
 
   // Forward keydowns to the main slides if we're the popup.
   if (this.controller && this.controller.isPopup) {
-    this.controller.sendMsg({keyCode: e.keyCode});
+    this.controller.sendMsg({ keyCode: e.keyCode });
   }
 
   switch (e.keyCode) {
-    case 13: // Enter
+    case 13:
+      // Enter
       if (document.body.classList.contains('overview')) {
         this.toggleOverview();
       }
@@ -186,37 +187,44 @@ SlideDeck.prototype.onBodyKeyDown_ = function (e) {
 
     case 39: // right arrow
     case 32: // space
-    case 34: // PgDn
+    case 34:
+      // PgDn
       this.nextSlide();
       e.preventDefault();
       break;
 
     case 37: // left arrow
     case 8: // Backspace
-    case 33: // PgUp
+    case 33:
+      // PgUp
       this.prevSlide();
       e.preventDefault();
       break;
 
-    case 40: // down arrow
+    case 40:
+      // down arrow
       this.nextSlide();
       e.preventDefault();
       break;
 
-    case 38: // up arrow
+    case 38:
+      // up arrow
       this.prevSlide();
       e.preventDefault();
       break;
 
-    case 72: // H: Toggle code highlighting
+    case 72:
+      // H: Toggle code highlighting
       document.body.classList.toggle('highlight-code');
       break;
 
-    case 79: // O: Toggle overview
+    case 79:
+      // O: Toggle overview
       this.toggleOverview();
       break;
 
-    case 80: // P
+    case 80:
+      // P
       if (this.controller && this.controller.isPopup) {
         document.body.classList.toggle('with-notes');
       } else if (this.controller && !this.controller.popup) {
@@ -224,11 +232,13 @@ SlideDeck.prototype.onBodyKeyDown_ = function (e) {
       }
       break;
 
-    case 82: // R
+    case 82:
+      // R
       // TODO: implement refresh on main slides when popup is refreshed.
       break;
 
-    case 27: // ESC: Hide notes and highlighting
+    case 27:
+      // ESC: Hide notes and highlighting
       document.body.classList.remove('with-notes');
       document.body.classList.remove('highlight-code');
 
@@ -237,7 +247,8 @@ SlideDeck.prototype.onBodyKeyDown_ = function (e) {
       }
       break;
 
-    case 70: // F: Toggle fullscreen
+    case 70:
+      // F: Toggle fullscreen
       // Only respect 'f' on body. Don't want to capture keys from an <input>.
       // Also, ignore browser's fullscreen shortcut (cmd+shift+f) so we don't
       // get trapped in fullscreen!
@@ -252,7 +263,8 @@ SlideDeck.prototype.onBodyKeyDown_ = function (e) {
       }
       break;
 
-    case 87: // W: Toggle widescreen
+    case 87:
+      // W: Toggle widescreen
       // Only respect 'w' on body. Don't want to capture keys from an <input>.
       if (e.target == document.body && !(e.shiftKey && e.metaKey)) {
         this.container.classList.toggle('layout-widescreen');
@@ -268,9 +280,7 @@ SlideDeck.prototype.focusOverview_ = function () {
   var overview = document.body.classList.contains('overview');
 
   for (var i = 0, slide; slide = this.slides[i]; i++) {
-    slide.style[Modernizr.prefixed('transform')] = overview ?
-    'translateZ(-2500px) translate(' + (( i - this.curSlide_ ) * 105) +
-    '%, 0%)' : '';
+    slide.style[Modernizr.prefixed('transform')] = overview ? 'translateZ(-2500px) translate(' + (i - this.curSlide_) * 105 + '%, 0%)' : '';
   }
 };
 
@@ -344,18 +354,13 @@ SlideDeck.prototype.loadConfig_ = function (config) {
       }
       html = presenterTitle.join(' - ') + '<br>';
 
-      var gplus = p.gplus ? '<span>g+</span><a href="' + p.gplus +
-      '">' + p.gplus.replace(/https?:\/\//, '') + '</a>' : '';
+      var gplus = p.gplus ? '<span>g+</span><a href="' + p.gplus + '">' + p.gplus.replace(/https?:\/\//, '') + '</a>' : '';
 
-      var twitter = p.twitter ? '<span>twitter</span>' +
-      '<a href="http://twitter.com/' + p.twitter + '">' +
-      p.twitter + '</a>' : '';
+      var twitter = p.twitter ? '<span>twitter</span>' + '<a href="http://twitter.com/' + p.twitter + '">' + p.twitter + '</a>' : '';
 
-      var www = p.www ? '<span>www</span><a href="' + p.www +
-      '">' + p.www.replace(/https?:\/\//, '') + '</a>' : '';
+      var www = p.www ? '<span>www</span><a href="' + p.www + '">' + p.www.replace(/https?:\/\//, '') + '</a>' : '';
 
-      var github = p.github ? '<span>github</span><a href="' + p.github +
-      '">' + p.github.replace(/https?:\/\//, '') + '</a>' : '';
+      var github = p.github ? '<span>github</span><a href="' + p.github + '">' + p.github.replace(/https?:\/\//, '') + '</a>' : '';
 
       var html2 = [gplus, twitter, www, github].join('<br>');
 
@@ -398,8 +403,7 @@ SlideDeck.prototype.loadConfig_ = function (config) {
     this.container.appendChild(el);
   }
 
-  if (Modernizr.touch && (!!!('enableTouch' in settings) ||
-    settings.enableTouch)) {
+  if (Modernizr.touch && (!!!('enableTouch' in settings) || settings.enableTouch)) {
     var self = this;
 
     // Note: this prevents mobile zoom in/out but prevents iOS from doing
@@ -426,8 +430,7 @@ SlideDeck.prototype.loadConfig_ = function (config) {
 SlideDeck.prototype.addFonts_ = function (fonts) {
   var el = document.createElement('link');
   el.rel = 'stylesheet';
-  el.href = ('https:' == document.location.protocol ? 'https' : 'http') +
-    '://fonts.googleapis.com/css?family=' + fonts.join('|') + '&v2';
+  el.href = ('https:' == document.location.protocol ? 'https' : 'http') + '://fonts.googleapis.com/css?family=' + fonts.join('|') + '&v2';
   document.querySelector('head').appendChild(el);
 };
 
@@ -572,11 +575,11 @@ SlideDeck.prototype.updateSlides_ = function (opt_dontPush) {
   this.triggerSlideEvent('slideleave', this.prevSlide_);
   this.triggerSlideEvent('slideenter', curSlide);
 
-// window.setTimeout(this.disableSlideFrames_.bind(this, curSlide - 2), 301);
-// 
-// this.enableSlideFrames_(curSlide - 1); // Previous slide.
-// this.enableSlideFrames_(curSlide + 1); // Current slide.
-// this.enableSlideFrames_(curSlide + 2); // Next slide.
+  // window.setTimeout(this.disableSlideFrames_.bind(this, curSlide - 2), 301);
+  // 
+  // this.enableSlideFrames_(curSlide - 1); // Previous slide.
+  // this.enableSlideFrames_(curSlide + 1); // Current slide.
+  // this.enableSlideFrames_(curSlide + 2); // Next slide.
 
   // Enable current slide's iframes (needed for page loat at current slide).
   this.enableSlideFrames_(curSlide + 1);
@@ -591,7 +594,6 @@ SlideDeck.prototype.updateSlides_ = function (opt_dontPush) {
     this.focusOverview_();
     return;
   }
-
 };
 
 /**
@@ -650,7 +652,7 @@ SlideDeck.prototype.disableFrame_ = function (frame) {
  * @param {number} slideNo
  */
 SlideDeck.prototype.getSlideEl_ = function (no) {
-  if ((no < 0) || (no >= this.slides.length)) {
+  if (no < 0 || no >= this.slides.length) {
     return null;
   } else {
     return this.slides[no];
@@ -712,11 +714,9 @@ SlideDeck.prototype.updateHash_ = function (dontPush) {
     }
 
     // Record GA hit on this slide.
-    window['_gaq'] && window['_gaq'].push(['_trackPageview',
-      document.location.href]);
+    window['_gaq'] && window['_gaq'].push(['_trackPageview', document.location.href]);
   }
 };
-
 
 /**
  * @private
@@ -773,7 +773,6 @@ SlideDeck.prototype.loadAnalytics_ = function () {
   })();
 };
 
-
 // Polyfill missing APIs (if we need to), then create the slide deck.
 // iOS < 5 needs classList, dataset, and window.matchMedia. Modernizr contains
 // the last one.
@@ -781,8 +780,10 @@ SlideDeck.prototype.loadAnalytics_ = function () {
   Modernizr.load({
     test: !!document.body.classList && !!document.body.dataset,
     nope: ['js/polyfills/classList.min.js', 'js/polyfills/dataset.min.js'],
-    complete: function () {
+    complete: function complete() {
       window.slidedeck = new SlideDeck();
     }
   });
 })();
+
+//# sourceMappingURL=slide-deck-compiled.js.map

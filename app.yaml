@@ -10,7 +10,7 @@ handlers:
   upload: template\.html
 
 - url: /slide_config\.js
-  static_files: slide_config.js
+  static_files: slideConfig.js
   upload: slide_config\.js
 
 - url: /js

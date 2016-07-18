@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 import codecs
-import re
 import jinja2
 import markdown
 
+
 def process_slides():
-  with codecs.open('../../presentation-output.html', 'w', encoding='utf8') as outfile:
+  with codecs.open('../../presentation-output.html', 'w',
+                   encoding='utf8') as outfile:
     md = codecs.open('slides.md', encoding='utf8').read()
     md_slides = md.split('\n---\n')
     print 'Compiled %s slides.' % len(md_slides)
@@ -33,6 +34,7 @@ def process_slides():
 
     outfile.write(template.render(locals()))
 
+
 def parse_metadata(section):
   """Given the first part of a slide, returns metadata associated with it."""
   metadata = {}
@@ -46,12 +48,14 @@ def parse_metadata(section):
 
   return metadata
 
+
 def postprocess_html(html, metadata):
   """Returns processed HTML to fit into the slide template format."""
   if metadata.get('build_lists') and metadata['build_lists'] == 'true':
     html = html.replace('<ul>', '<ul class="build">')
     html = html.replace('<ol>', '<ol class="build">')
   return html
+
 
 if __name__ == '__main__':
   process_slides()

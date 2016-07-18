@@ -22,10 +22,11 @@ q, blockquote {
 slides > slide {
   color: #515151;
 }
+
 /* line 24, ../scss/io2013.scss */
 slides > slide.title-slide:after {
   content: '';
-  background: url(../../images/io2013/google-io-lockup-1.png) no-repeat 100% 50%;
+  background: url(../../images/logo/spark-logo.jpg) no-repeat 100% 50%;
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
@@ -36,19 +37,23 @@ slides > slide.title-slide:after {
   width: 100%;
   height: 90px;
 }
+
 /* line 36, ../scss/io2013.scss */
 slides > slide.title-slide hgroup h1 {
   font-weight: bold;
   line-height: 1.1;
 }
+
 /* line 40, ../scss/io2013.scss */
 slides > slide.title-slide hgroup h2, slides > slide.title-slide hgroup p {
   color: #515151;
 }
+
 /* line 43, ../scss/io2013.scss */
 slides > slide.title-slide hgroup h2 {
   margin-top: 0.25em;
 }
+
 /* line 46, ../scss/io2013.scss */
 slides > slide.title-slide hgroup p {
   margin-top: 3em;
